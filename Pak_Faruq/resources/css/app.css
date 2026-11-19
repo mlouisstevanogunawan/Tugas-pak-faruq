@@ -1,0 +1,444 @@
+/* ==========================================================================
+   Tugas Pak Faruq - Premium Modern Design System & Animation Engine
+   Dibuat untuk tampilan responsif, modern, dan kaya animasi interaktif
+   ========================================================================== */
+
+/* Variabel Desain Global (CSS Custom Properties) */
+:root {
+  /* Gradien warna primer utama (Indigo ke Ungu) */
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  /* Gradien warna saat tombol primer di-hover pengguna */
+  --primary-hover-gradient: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  /* Gradien aksen sekunder cerah (Emerald ke Cyan) */
+  --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  /* Gradien aksen bahaya / delete (Rose ke Red) */
+  --danger-gradient: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  /* Warna merek primer */
+  --brand-color: #6366f1;
+  /* Warna teks utama (Slate 800) */
+  --text-main: #1e293b;
+  /* Warna teks sekunder / muted (Slate 500) */
+  --text-muted: #64748b;
+  /* Latar belakang terang aplikasi */
+  --bg-app: #f8fafc;
+  /* Warna border netral lembut */
+  --border-soft: #e2e8f0;
+  /* Font sans utama aplikasi */
+  --font-family-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Transisi standar yang halus */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Efek bayangan lembut kartu */
+  --shadow-card: 0 10px 25px -5px rgba(99, 102, 241, 0.08), 0 8px 10px -6px rgba(99, 102, 241, 0.04);
+  /* Efek bayangan saat hover terangkat */
+  --shadow-lift: 0 20px 30px -10px rgba(99, 102, 241, 0.2);
+}
+
+/* Reset dan Pengaturan Elemen Dasar HTML */
+html {
+  /* Memastikan scrolling halaman terasa lembut saat navigasi anchor */
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Menerapkan font modern Plus Jakarta Sans ke seluruh halaman */
+  font-family: var(--font-family-sans);
+  /* Memberikan latar belakang netral yang nyaman untuk mata */
+  background-color: var(--bg-app);
+  /* Warna teks standar yang memiliki kontras tinggi */
+  color: var(--text-main);
+  /* Menghaluskan rendering font di browser WebKit */
+  -webkit-font-smoothing: antialiased;
+  /* Menghaluskan rendering font di browser Firefox */
+  -moz-osx-font-smoothing: grayscale;
+  /* Mengatur tinggi baris teks agar mudah dibaca */
+  line-height: 1.6;
+  /* Mencegah overflow horizontal pada layar kecil */
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Keyframes & Animasi Halus
+   ========================================================================== */
+
+/* Animasi Fade In dengan sedikit pergeseran vertikal ke atas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasi Slide In dari bawah untuk kartu atau konten */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasi Slide In dari atas untuk notifikasi / navbar */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasi Mengambang Lembut (Floating Effect) untuk ilustrasi atau badge */
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Animasi denyut halus (Pulse) untuk tombol aksi atau status aktif */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(99, 102, 241, 0);
+  }
+}
+
+/* Animasi shimmer untuk skeleton loading state */
+@keyframes shimmerEffect {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================================================
+   Kelas Utilitas Animasi (Animation Utility Classes)
+   ========================================================================== */
+
+/* Kelas untuk memberikan efek fade-in otomatis saat komponen dimuat */
+.animate-fade-in {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Kelas untuk memberikan efek slide-up yang elegan */
+.animate-slide-up {
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Kelas untuk memberikan efek slide-down pada alert atau dropdown */
+.animate-slide-down {
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Kelas untuk animasi mengambang berulang secara halus */
+.animate-float {
+  animation: floatAnimation 3.5s ease-in-out infinite;
+}
+
+/* Kelas untuk denyut glow */
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* Efek interaktif: Mengangkat elemen ke atas saat hover */
+.hover-lift {
+  transition: var(--transition-smooth);
+}
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lift) !important;
+}
+
+/* Efek interaktif: Skala elemen sedikit membesar saat hover */
+.hover-scale {
+  transition: var(--transition-smooth);
+}
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+/* ==========================================================================
+   Navigasi & Header Kustom
+   ========================================================================== */
+
+/* Navbar modern dengan efek kaca buram (glassmorphism) */
+.navbar-custom {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: var(--transition-smooth);
+}
+
+/* Gaya link pada navbar */
+.navbar-custom .nav-link {
+  color: #cbd5e1 !important;
+  font-weight: 500;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  transition: var(--transition-smooth);
+}
+
+/* Gaya link navbar saat disorot atau aktif */
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Logo brand pada header */
+.brand-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px -4px rgba(99, 102, 241, 0.4);
+}
+
+.brand-icon-sm {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--primary-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+}
+
+.brand-title {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.5px;
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   Tombol Interaktif (Button Enhancements)
+   ========================================================================== */
+
+/* Tombol gradien primer */
+.btn-gradient-primary {
+  background: var(--primary-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.35);
+}
+
+.btn-gradient-primary:hover {
+  background: var(--primary-hover-gradient) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px 0 rgba(99, 102, 241, 0.45);
+}
+
+.btn-gradient-primary:active {
+  transform: translateY(0);
+}
+
+/* Tombol gradien sukses */
+.btn-gradient-success {
+  background: var(--success-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.35);
+}
+
+.btn-gradient-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px 0 rgba(16, 185, 129, 0.45);
+}
+
+/* Tombol gradien bahaya (danger) */
+.btn-gradient-danger {
+  background: var(--danger-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px 0 rgba(244, 63, 94, 0.35);
+}
+
+.btn-gradient-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px 0 rgba(244, 63, 94, 0.45);
+}
+
+/* ==========================================================================
+   Kartu, Form & Glassmorphism
+   ========================================================================== */
+
+/* Desain kartu modern */
+.card-modern {
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+}
+
+.card-modern:hover {
+  box-shadow: var(--shadow-lift);
+}
+
+/* Efek Glassmorphism untuk Kartu Autentikasi dan Dashboard */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.12) !important;
+  border-radius: 20px;
+}
+
+/* Styling Form Input yang Ramah Fokus */
+.form-control, .form-select {
+  border: 1.5px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--brand-color);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+  background-color: #ffffff !important;
+}
+
+/* ==========================================================================
+   Desain Tabel & Tampilan Mobile Card
+   ========================================================================== */
+
+/* Styling header tabel */
+.table thead th {
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: var(--text-muted);
+  background-color: #f8fafc;
+  border-bottom: 2px solid var(--border-soft);
+}
+
+/* Efek hover baris tabel */
+.table-hover tbody tr {
+  transition: var(--transition-smooth);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.04);
+}
+
+/* Kartu Post untuk Tampilan Mobile (Responsive Grid) */
+.post-mobile-card {
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: var(--transition-smooth);
+}
+
+.post-mobile-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* ==========================================================================
+   Animasi Transisi Vue (Transition & TransitionGroup)
+   ========================================================================== */
+
+/* Transisi Fade untuk Notifikasi / Modal */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Transisi Group untuk List Post (Penambahan & Penghapusan Item) */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.4s ease;
+}
+
+.list-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.list-move {
+  transition: transform 0.4s ease;
+}
+
+/* ==========================================================================
+   Aturan Responsif (Media Queries)
+   ========================================================================== */
+
+/* Perangkat Mobile Kecil (Smartphone < 576px) */
+@media (max-width: 575.98px) {
+  /* Memperbesar ukuran target sentuh tombol aksi pada smartphone */
+  .btn {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+  
+  /* Ukuran judul utama yang proporsional di layar ponsel */
+  h1, .display-4 {
+    font-size: 2rem !important;
+  }
+  
+  /* Menyesuaikan padding kartu pada perangkat kecil */
+  .card-body {
+    padding: 1.25rem !important;
+  }
+}
+
+/* Perangkat Tablet (Layar Sedang < 992px) */
+@media (max-width: 991.98px) {
+  /* Menyempurnakan tampilan menu collapsible pada navbar */
+  .navbar-collapse {
+    background: #0f172a;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-top: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
